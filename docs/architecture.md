@@ -2,9 +2,9 @@
 
 ## Roles
 
-- Admin: manages users, nutritionists, courses, analytics, appointments, payments, and moderation.
-- Registered Nutritionist: manages courses, lessons, YouTube videos, schedules, appointments, patient communication, and payments.
-- User/Patient: manages profile, books appointments, pays for consultations, joins online sessions, chats with nutritionists, and tracks course progress.
+- Admin: manages users, creates courses, uploads course images, reviews analytics, appointments, payments, and moderation.
+- ASIFIWE Ruth: the single doctor account. She updates course content, lessons, YouTube videos, schedules, appointments, patient communication, and payments.
+- User/Patient: manages profile, books appointments with ASIFIWE Ruth, pays for consultations, joins online sessions, chats with Ruth, and tracks course progress.
 
 ## Data Model
 
@@ -19,6 +19,16 @@ The PostgreSQL schema includes:
 - `payments`
 - `messages`
 
+## Single-Doctor Rule
+
+The product is configured for one doctor only:
+
+- ASIFIWE Ruth
+- ruthasifiwe@gmail.com
+- 0787977326
+
+Admin creates course records and uploads course images. ASIFIWE Ruth updates videos, lessons, descriptions, and learning materials.
+
 ## Integration Plan
 
 - Stripe: create payment intents before appointment confirmation or course enrollment.
@@ -32,6 +42,5 @@ The PostgreSQL schema includes:
 - Add refresh tokens and password reset email delivery.
 - Add Stripe webhooks for definitive payment confirmation.
 - Add Cloudinary signed upload presets for direct client upload.
-- Add audit logging for admin and nutritionist actions.
+- Add audit logging for admin and ASIFIWE Ruth actions.
 - Add tests for authorization, appointment state transitions, payment confirmation, and course moderation.
-

@@ -30,6 +30,14 @@ router.post('/register', validate(registerSchema), async (req, res) => {
   if (users.some((user) => user.email === email)) {
     return res.status(409).json({ message: 'Email is already registered.' });
   }
+  if (role === roles.NUTRITIONIST) {
+    const ruthExists = users.some((user) => user.role === roles.NUTRITIONIST);
+    if (email !== 'ruthasifiwe@gmail.com' || ruthExists) {
+      return res.status(409).json({
+        message: 'This platform supports one doctor account only: ASIFIWE Ruth.',
+      });
+    }
+  }
 
   const user = {
     id: makeId('usr'),
@@ -83,4 +91,3 @@ router.patch('/me', authenticate, (req, res) => {
 });
 
 export default router;
-

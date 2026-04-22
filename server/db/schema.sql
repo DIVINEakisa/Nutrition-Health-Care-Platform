@@ -19,6 +19,8 @@ CREATE TABLE nutritionist_profiles (
   user_id UUID PRIMARY KEY REFERENCES users(id) ON DELETE CASCADE,
   license_number TEXT,
   specialty TEXT,
+  phone TEXT,
+  profile_image_url TEXT,
   bio TEXT,
   rating NUMERIC(2, 1) DEFAULT 0,
   verified_at TIMESTAMPTZ
@@ -27,6 +29,8 @@ CREATE TABLE nutritionist_profiles (
 CREATE TABLE courses (
   id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
   nutritionist_id UUID NOT NULL REFERENCES users(id),
+  created_by_admin_id UUID REFERENCES users(id),
+  updated_by_nutritionist_id UUID REFERENCES users(id),
   title TEXT NOT NULL,
   category TEXT NOT NULL,
   description TEXT NOT NULL,
@@ -88,4 +92,3 @@ CREATE TABLE messages (
   created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
   read_at TIMESTAMPTZ
 );
-

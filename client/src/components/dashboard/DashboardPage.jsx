@@ -28,9 +28,11 @@ import {
 
 const roleOptions = [
   { id: 'patient', label: 'Patient', icon: Users },
-  { id: 'nutritionist', label: 'Nutritionist', icon: BookOpen },
+  { id: 'nutritionist', label: 'Doctor', icon: BookOpen },
   { id: 'admin', label: 'Admin', icon: ShieldCheck },
 ];
+
+const primaryDoctor = nutritionists[0];
 
 const dashboardNav = [
   { id: 'overview', label: 'Overview', icon: LayoutDashboard },
@@ -87,9 +89,9 @@ export default function DashboardPage() {
               <p className="mt-2 text-lg font-bold text-ink">
                 {role === 'admin'
                   ? 'Admin Console'
-                  : role === 'patient'
-                    ? 'Patient Portal'
-                    : 'Nutritionist Studio'}
+                    : role === 'patient'
+                      ? 'Patient Portal'
+                      : 'ASIFIWE Ruth Studio'}
               </p>
             </div>
             <div className="flex gap-2 overflow-x-auto p-1 lg:grid lg:overflow-visible">
@@ -185,9 +187,9 @@ function NutritionistDashboard({ activeTab, setActiveTab }) {
           </div>
         </Panel>
 
-        <Panel title="Create and manage courses" icon={BookOpen}>
+        <Panel title="Update admin-created courses" icon={BookOpen}>
           <div className="grid gap-4 lg:grid-cols-2">
-            <CourseBuilder />
+            <DoctorCourseUpdater />
             <LessonBuilder />
           </div>
         </Panel>
@@ -260,7 +262,7 @@ function NutritionistDashboard({ activeTab, setActiveTab }) {
       <DashboardMetrics
         metrics={[
           ['Pending appointments', '12', '+4 today'],
-          ['Course revenue', '$7.8K', '+11%'],
+          ['Course payments', '$7.8K', '+11%'],
           ['Active patients', '248', '+27'],
           ['Unread messages', '18', '5 urgent'],
         ]}
@@ -282,7 +284,7 @@ function NutritionistDashboard({ activeTab, setActiveTab }) {
         <Panel title="Quick actions" icon={Plus}>
           <div className="grid gap-3">
             {[
-              ['Create course', 'Add thumbnail, description, lessons, and materials.'],
+              ['Update course', 'Revise descriptions, lessons, and videos.'],
               ['Set schedule', 'Publish available telehealth consultation slots.'],
               ['Review payments', 'Track invoices, confirmations, and service revenue.'],
             ].map(([title, copy]) => (
@@ -290,7 +292,7 @@ function NutritionistDashboard({ activeTab, setActiveTab }) {
                 key={title}
                 type="button"
                 onClick={() =>
-                  setActiveTab(title === 'Create course' ? 'courses' : title === 'Set schedule' ? 'appointments' : 'payments')
+                  setActiveTab(title === 'Update course' ? 'courses' : title === 'Set schedule' ? 'appointments' : 'payments')
                 }
                 className="rounded-lg border border-slate-200 p-4 text-left transition hover:border-primary hover:bg-emerald-50"
               >
@@ -378,7 +380,7 @@ function PatientDashboard({ activeTab }) {
           <div className="grid gap-4 sm:grid-cols-2">
             {[
               ['Current focus', 'Diabetes meal planning'],
-              ['Nutritionist', 'Dr. Amara Collins'],
+              ['Doctor', primaryDoctor.name],
               ['Next session', 'May 27, 2026 at 10:30'],
               ['Payment status', 'Confirmed'],
             ].map(([label, value]) => (
@@ -400,17 +402,22 @@ function AdminDashboard({ activeTab }) {
 
   if (activeTab === 'courses') {
     return (
-      <Panel title="Course moderation" icon={BookOpen}>
-        <AdminTable
-          columns={['Course', 'Category', 'Instructor', 'Status']}
-          rows={courses.map((course) => [
-            course.title,
-            course.category,
-            course.instructor,
-            course.progress > 0 ? 'Published' : 'Review',
-          ])}
-        />
-      </Panel>
+      <div className="grid gap-6">
+        <Panel title="Admin course and image creation" icon={FileImage}>
+          <AdminCourseCreator />
+        </Panel>
+        <Panel title="Course moderation" icon={BookOpen}>
+          <AdminTable
+            columns={['Course', 'Category', 'Doctor', 'Status']}
+            rows={courses.map((course) => [
+              course.title,
+              course.category,
+              course.instructor,
+              course.progress > 0 ? 'Published' : 'Review',
+            ])}
+          />
+        </Panel>
+      </div>
     );
   }
 
@@ -418,7 +425,7 @@ function AdminDashboard({ activeTab }) {
     return (
       <Panel title="Appointment oversight" icon={CalendarCheck}>
         <AdminTable
-          columns={['ID', 'Patient', 'Nutritionist', 'Status', 'Payment']}
+          columns={['ID', 'Patient', 'Doctor', 'Status', 'Payment']}
           rows={appointments.map((appointment) => [
             appointment.id,
             appointment.patient,
@@ -435,13 +442,12 @@ function AdminDashboard({ activeTab }) {
     <div className="grid gap-6">
       <DashboardMetrics metrics={adminMetrics.map((item) => [item.label, item.value, item.trend])} />
       <div className="grid gap-6 xl:grid-cols-2">
-        <Panel title="User and nutritionist management" icon={Users}>
+        <Panel title="User and doctor management" icon={Users}>
           <AdminTable
             columns={['Name', 'Role', 'Status']}
             rows={[
               ['Maya Roberts', 'Patient', 'Active'],
-              ['Dr. Amara Collins', 'Registered Nutritionist', 'Verified'],
-              ['Samuel Okafor', 'Registered Nutritionist', 'Verified'],
+              [primaryDoctor.name, 'Doctor', 'Verified'],
               ['Jean Ndayisenga', 'Patient', 'Active'],
             ]}
           />
@@ -450,7 +456,7 @@ function AdminDashboard({ activeTab }) {
           <div className="grid gap-4">
             {[
               ['Monthly revenue', '$82.4K', 'Payments confirmed through Stripe-ready service.'],
-              ['Moderation queue', '7 items', 'Courses, thumbnails, and video links awaiting review.'],
+              ['Moderation queue', '7 items', 'Admin-created course images and Ruth updates awaiting review.'],
               ['Consultation completion', '94%', 'Approved appointments that reached video session.'],
             ].map(([label, value, copy]) => (
               <div key={label} className="rounded-lg border border-slate-200 p-4">
@@ -490,7 +496,7 @@ function CommunicationHub() {
       <div className="grid gap-5 lg:grid-cols-[1fr_320px]">
         <div className="rounded-lg border border-slate-200">
           <div className="border-b border-slate-200 bg-slate-50 p-4">
-            <p className="font-bold text-ink">Maya Roberts and Dr. Amara Collins</p>
+            <p className="font-bold text-ink">Maya Roberts and {primaryDoctor.name}</p>
             <p className="text-sm text-slate-500">Real-time chat, notifications, and message history</p>
           </div>
           <div className="grid max-h-[430px] gap-4 overflow-y-auto p-4">
@@ -537,11 +543,11 @@ function CommunicationHub() {
             <Video size={18} />
             Start video consultation
           </button>
-          {['Appointment approved', 'Payment confirmed', 'New nutritionist message'].map((item) => (
+          {['Appointment approved', 'Payment confirmed', 'New doctor message'].map((item) => (
             <div key={item} className="rounded-lg border border-slate-200 bg-white p-4">
               <p className="font-bold text-ink">{item}</p>
               <p className="mt-1 text-sm leading-6 text-slate-600">
-                Notification delivered to patient and clinician dashboards.
+                Notification delivered to patient and ASIFIWE Ruth dashboards.
               </p>
             </div>
           ))}
@@ -570,12 +576,12 @@ function PaymentsPanel() {
   );
 }
 
-function CourseBuilder() {
+function AdminCourseCreator() {
   return (
     <div className="rounded-lg border border-slate-200 p-4">
       <div className="flex items-center gap-3">
         <FileImage size={21} className="text-primary" />
-        <h3 className="font-bold text-ink">Course details</h3>
+        <h3 className="font-bold text-ink">Create course and upload image</h3>
       </div>
       <div className="mt-4 grid gap-3">
         <input className="focus-ring rounded-lg border border-slate-200 px-4 py-3" placeholder="Course title" />
@@ -588,14 +594,43 @@ function CourseBuilder() {
         <input className="focus-ring rounded-lg border border-slate-200 px-4 py-3" placeholder="Thumbnail image URL or Cloudinary upload" />
         <textarea
           className="focus-ring min-h-[100px] rounded-lg border border-slate-200 px-4 py-3"
-          placeholder="Course description"
+          placeholder="Admin course description"
         />
         <button
           type="button"
           className="inline-flex items-center justify-center gap-2 rounded-lg bg-primary px-4 py-3 text-sm font-bold text-white"
         >
           <Plus size={18} />
-          Save course
+          Create course as admin
+        </button>
+      </div>
+    </div>
+  );
+}
+
+function DoctorCourseUpdater() {
+  return (
+    <div className="rounded-lg border border-slate-200 p-4">
+      <div className="flex items-center gap-3">
+        <BookOpen size={21} className="text-primary" />
+        <h3 className="font-bold text-ink">ASIFIWE Ruth course updates</h3>
+      </div>
+      <div className="mt-4 grid gap-3">
+        <select className="focus-ring rounded-lg border border-slate-200 px-4 py-3">
+          {courses.map((course) => (
+            <option key={course.id}>{course.title}</option>
+          ))}
+        </select>
+        <textarea
+          className="focus-ring min-h-[100px] rounded-lg border border-slate-200 px-4 py-3"
+          placeholder="Update course description, learning materials, or patient notes"
+        />
+        <button
+          type="button"
+          className="inline-flex items-center justify-center gap-2 rounded-lg bg-primary px-4 py-3 text-sm font-bold text-white"
+        >
+          <CheckCircle2 size={18} />
+          Save Ruth update
         </button>
       </div>
     </div>
@@ -607,7 +642,7 @@ function LessonBuilder() {
     <div className="rounded-lg border border-slate-200 p-4">
       <div className="flex items-center gap-3">
         <FileText size={21} className="text-primary" />
-        <h3 className="font-bold text-ink">Lesson materials</h3>
+        <h3 className="font-bold text-ink">Video lessons and materials</h3>
       </div>
       <div className="mt-4 grid gap-3">
         <input className="focus-ring rounded-lg border border-slate-200 px-4 py-3" placeholder="Lesson title" />
@@ -621,7 +656,7 @@ function LessonBuilder() {
           className="inline-flex items-center justify-center gap-2 rounded-lg border border-primary px-4 py-3 text-sm font-bold text-primary"
         >
           <Plus size={18} />
-          Add lesson
+          Add Ruth lesson update
         </button>
       </div>
     </div>
@@ -699,4 +734,3 @@ function toYoutubeEmbed(url) {
     return '';
   }
 }
-

@@ -5,7 +5,9 @@ import {
   CheckCircle2,
   GraduationCap,
   HeartPulse,
+  Mail,
   MessageSquareText,
+  Phone,
   PlayCircle,
   ShieldCheck,
   Sparkles,
@@ -26,7 +28,7 @@ import {
 
 const heroStats = [
   { label: 'Patient satisfaction', value: '98%' },
-  { label: 'Registered nutritionists', value: '126+' },
+  { label: 'Dedicated nutrition doctor', value: '1' },
   { label: 'Course learners', value: '14K+' },
 ];
 
@@ -34,7 +36,7 @@ const aboutCards = [
   {
     icon: Stethoscope,
     title: 'Registered consultation',
-    copy: 'Patients meet verified nutritionists for disease-aware nutrition care and ongoing support.',
+    copy: 'Patients meet ASIFIWE Ruth for disease-aware nutrition care and ongoing support.',
   },
   {
     icon: GraduationCap,
@@ -64,7 +66,7 @@ export default function HomePage({ onNavigate, onCourseSelect }) {
               Premium nutrition care for healthier decisions every day.
             </h1>
             <p className="mt-6 max-w-2xl text-lg leading-8 text-emerald-50">
-              Connect with registered nutritionists, learn from clinical courses, book online
+              Connect with ASIFIWE Ruth, learn from clinical courses, book online
               consultations, pay securely, and continue care through chat and video sessions.
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
@@ -107,7 +109,7 @@ export default function HomePage({ onNavigate, onCourseSelect }) {
             <SectionHeader
               eyebrow="About the platform"
               title="Nutrition care that combines clinical trust with practical education."
-              description="NutriCare Pro is designed for patients, registered nutritionists, and administrators who need a reliable healthcare workflow across learning, booking, payment, and follow-up communication."
+              description="NutriCare Pro is designed for patients, ASIFIWE Ruth, and administrators who need a reliable healthcare workflow across learning, booking, payment, and follow-up communication."
             />
             <div className="mt-8 grid gap-4">
               {aboutCards.map((card) => (
@@ -130,7 +132,7 @@ export default function HomePage({ onNavigate, onCourseSelect }) {
           <div className="grid gap-4 sm:grid-cols-2">
             <img
               src={imageLibrary.doctorPatient}
-              alt="Nutritionist reviewing a care plan with a patient"
+              alt="Doctor reviewing a care plan with a patient"
               className="h-72 w-full rounded-lg object-cover shadow-card sm:h-full"
             />
             <div className="grid gap-4">
@@ -183,6 +185,9 @@ export default function HomePage({ onNavigate, onCourseSelect }) {
                     {course.category}
                   </p>
                   <h3 className="mt-3 text-xl font-bold text-ink">{course.title}</h3>
+                  <p className="mt-2 text-sm font-semibold text-primary">
+                    Added by {course.createdBy} | Updated by {course.updatedBy}
+                  </p>
                   <p className="mt-3 line-clamp-3 leading-6 text-slate-600">
                     {course.description}
                   </p>
@@ -209,8 +214,8 @@ export default function HomePage({ onNavigate, onCourseSelect }) {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <SectionHeader
             eyebrow="Featured videos"
-            title="Nutritionists can publish YouTube lessons directly to patient learning spaces."
-            description="Uploaded YouTube links are converted into secure embedded lessons and displayed in course modules."
+            title="ASIFIWE Ruth updates YouTube lessons directly in patient learning spaces."
+            description="Admin-created courses can receive Ruth's updated video links, descriptions, and learning materials."
             align="center"
           />
           <div className="mt-10 grid gap-6 lg:grid-cols-2">
@@ -268,11 +273,11 @@ export default function HomePage({ onNavigate, onCourseSelect }) {
       <section className="bg-white py-16 sm:py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <SectionHeader
-            eyebrow="Registered nutritionists"
-            title="Trusted clinicians ready for personalized consultation."
-            description="Nutritionists manage schedules, course content, appointments, patient chat, and payments from a dedicated dashboard."
+            eyebrow="Your nutrition doctor"
+            title="ASIFIWE Ruth is the dedicated doctor for every consultation."
+            description="Admin creates course records and uploads course images. ASIFIWE Ruth updates course content, YouTube lessons, schedules, appointments, patient chat, and payments from her dashboard."
           />
-          <div className="mt-10 grid gap-6 md:grid-cols-3">
+          <div className="mt-10 grid gap-6 lg:grid-cols-[0.75fr_1.25fr]">
             {nutritionists.map((nutritionist) => (
               <article
                 key={nutritionist.id}
@@ -281,12 +286,31 @@ export default function HomePage({ onNavigate, onCourseSelect }) {
                 <img
                   src={nutritionist.image}
                   alt={`${nutritionist.name} portrait`}
-                  className="h-64 w-full rounded-lg object-cover"
+                  className="h-80 w-full rounded-lg object-cover object-top"
                 />
                 <h3 className="mt-5 text-xl font-bold text-ink">{nutritionist.name}</h3>
+                <p className="mt-1 text-sm font-bold uppercase tracking-[0.14em] text-primary">
+                  {nutritionist.title}
+                </p>
                 <p className="mt-2 min-h-[48px] leading-6 text-slate-600">
                   {nutritionist.specialty}
                 </p>
+                <div className="mt-5 grid gap-3">
+                  <a
+                    href={`mailto:${nutritionist.email}`}
+                    className="flex items-center gap-3 rounded-lg bg-slate-50 p-3 text-sm font-bold text-slate-700 transition hover:text-primary"
+                  >
+                    <Mail size={17} className="text-primary" />
+                    {nutritionist.email}
+                  </a>
+                  <a
+                    href={`tel:${nutritionist.phone}`}
+                    className="flex items-center gap-3 rounded-lg bg-slate-50 p-3 text-sm font-bold text-slate-700 transition hover:text-primary"
+                  >
+                    <Phone size={17} className="text-primary" />
+                    {nutritionist.phone}
+                  </a>
+                </div>
                 <div className="mt-5 grid grid-cols-2 gap-3">
                   <div className="rounded-lg bg-slate-50 p-3">
                     <p className="text-sm text-slate-500">Rating</p>
@@ -299,6 +323,24 @@ export default function HomePage({ onNavigate, onCourseSelect }) {
                 </div>
               </article>
             ))}
+            <div className="rounded-lg border border-slate-200 bg-slate-50 p-6 shadow-card">
+              <h3 className="text-2xl font-bold text-ink">Single-doctor care model</h3>
+              <p className="mt-3 leading-7 text-slate-600">
+                The platform no longer presents multiple doctors. Patients book with ASIFIWE Ruth,
+                while admins create courses and upload images before Ruth updates lessons,
+                descriptions, and YouTube video links.
+              </p>
+              <div className="mt-6 grid gap-3 sm:grid-cols-2">
+                <div className="rounded-lg bg-white p-4">
+                  <p className="text-sm font-semibold text-slate-500">Admin</p>
+                  <p className="mt-1 font-bold text-ink">Adds courses and images</p>
+                </div>
+                <div className="rounded-lg bg-white p-4">
+                  <p className="text-sm font-semibold text-slate-500">ASIFIWE Ruth</p>
+                  <p className="mt-1 font-bold text-ink">Updates videos and course content</p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -317,13 +359,13 @@ export default function HomePage({ onNavigate, onCourseSelect }) {
               icon={MessageSquareText}
               label="Care chat"
               value="Real-time"
-              detail="Socket-ready conversations preserve message history for patients and clinicians."
+              detail="Socket-ready conversations preserve message history for patients and ASIFIWE Ruth."
             />
             <MetricCard
               icon={Users}
               label="Role dashboards"
               value="3 roles"
-              detail="Patient, nutritionist, and admin workflows are separated by role permissions."
+              detail="Patient, doctor, and admin workflows are separated by role permissions."
               tone="orange"
             />
           </div>
@@ -364,7 +406,7 @@ export default function HomePage({ onNavigate, onCourseSelect }) {
             <CalendarDays size={34} className="text-emerald-100" />
             <h2 className="mt-5 text-3xl font-bold">Book a consultation with confidence.</h2>
             <p className="mt-4 leading-7 text-emerald-50">
-              Patients can select a nutritionist, choose a slot, confirm secure payment, and
+              Patients can select ASIFIWE Ruth's available slot, confirm secure payment, and
               receive status updates before joining online care.
             </p>
             <button
@@ -399,7 +441,7 @@ export default function HomePage({ onNavigate, onCourseSelect }) {
               Coordinate clinical nutrition programs, virtual care, and patient education.
             </h2>
             <p className="mt-4 text-base leading-7 text-slate-300 sm:text-lg">
-              care@nutricarepro.health | +250 788 000 245 | Kigali Telehealth Center
+              ruthasifiwe@gmail.com | 0787977326 | Kigali Telehealth Center
             </p>
           </div>
           <form className="grid gap-4 rounded-lg bg-white p-5 text-ink shadow-soft">

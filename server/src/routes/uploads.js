@@ -11,7 +11,7 @@ const upload = multer({ dest: 'tmp/uploads' });
 router.post(
   '/course-thumbnail',
   authenticate,
-  authorize(roles.NUTRITIONIST, roles.ADMIN),
+  authorize(roles.ADMIN),
   upload.single('image'),
   async (req, res, next) => {
     try {
@@ -28,4 +28,3 @@ router.post(
 );
 
 export default router;
-

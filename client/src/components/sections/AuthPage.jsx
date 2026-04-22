@@ -3,7 +3,7 @@ import { useState } from 'react';
 import SectionHeader from '../ui/SectionHeader.jsx';
 import { imageLibrary } from '../../data/platformData.js';
 
-const roles = ['User/Patient', 'Registered Nutritionist', 'Admin'];
+const roles = ['User/Patient', 'Doctor ASIFIWE Ruth', 'Admin'];
 
 export default function AuthPage() {
   const [mode, setMode] = useState('login');
@@ -15,8 +15,8 @@ export default function AuthPage() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <SectionHeader
             eyebrow="Secure authentication"
-            title="Role-aware access for patients, nutritionists, and administrators."
-            description="The authentication flow supports registration, login, forgot password, profile management, JWT-backed sessions, and role-based dashboards."
+            title="Role-aware access for patients, ASIFIWE Ruth, and administrators."
+            description="The authentication flow supports registration, login, forgot password, profile management, JWT-backed sessions, and dashboards for patients, the doctor, and admins."
           />
         </div>
       </section>
@@ -35,7 +35,7 @@ export default function AuthPage() {
                 {[
                   'JWT authentication with refresh-ready session structure',
                   'Bcrypt password hashing on the backend',
-                  'Role permissions for admin, nutritionist, and patient workflows',
+                  'Role permissions for admin, ASIFIWE Ruth, and patient workflows',
                   'Forgot password and profile update endpoints',
                 ].map((item) => (
                   <div key={item} className="flex items-start gap-3 text-slate-600">
@@ -154,7 +154,7 @@ export default function AuthPage() {
                 </label>
               )}
 
-              {mode === 'register' && role === 'Registered Nutritionist' && (
+              {mode === 'register' && role === 'Doctor ASIFIWE Ruth' && (
                 <div className="grid gap-4 sm:grid-cols-2">
                   <input
                     className="focus-ring rounded-lg border border-slate-200 px-4 py-3"
@@ -203,4 +203,3 @@ export default function AuthPage() {
     </main>
   );
 }
-

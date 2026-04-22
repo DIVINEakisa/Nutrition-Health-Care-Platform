@@ -17,12 +17,14 @@ export const users = [
   },
   {
     id: 'usr-nutritionist',
-    name: 'Dr. Amara Collins',
-    email: 'amara@nutricarepro.health',
+    name: 'ASIFIWE Ruth',
+    email: 'ruthasifiwe@gmail.com',
     passwordHash: '$2a$10$development',
     role: roles.NUTRITIONIST,
     status: 'verified',
-    specialty: 'Metabolic health and diabetes nutrition',
+    phone: '0787977326',
+    specialty: 'Nutrition education, consultation, and personalized healthcare support',
+    profileImageUrl: '/images/asifiwe-ruth.png',
   },
   {
     id: 'usr-patient',
@@ -42,6 +44,8 @@ export const courses = [
     description: 'Build blood sugar-friendly meals with practical portioning and weekly planning.',
     thumbnailUrl: 'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=1200&q=80',
     nutritionistId: 'usr-nutritionist',
+    createdByAdminId: 'usr-admin',
+    updatedByNutritionistId: 'usr-nutritionist',
     priceCents: 3900,
     status: 'published',
     lessons: [
@@ -92,4 +96,3 @@ export const messages = [
 export function makeId(prefix) {
   return `${prefix}-${crypto.randomUUID()}`;
 }
-

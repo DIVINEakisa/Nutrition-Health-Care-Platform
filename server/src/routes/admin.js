@@ -10,7 +10,7 @@ router.get('/analytics', (req, res) => {
   return res.json({
     analytics: {
       activePatients: users.filter((user) => user.role === roles.PATIENT).length,
-      nutritionists: users.filter((user) => user.role === roles.NUTRITIONIST).length,
+      doctors: users.filter((user) => user.role === roles.NUTRITIONIST).length,
       courses: courses.length,
       appointments: appointments.length,
       revenueCents: payments.reduce((total, payment) => total + payment.amountCents, 0),
@@ -44,4 +44,3 @@ router.patch('/courses/:id/moderation', (req, res) => {
 });
 
 export default router;
-

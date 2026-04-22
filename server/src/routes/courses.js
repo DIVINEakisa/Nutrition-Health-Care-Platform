@@ -4,6 +4,8 @@ import { authenticate, authorize } from '../middleware/auth.js';
 import { validate } from '../middleware/validate.js';
 import { courses, makeId, roles } from '../data/mockStore.js';
 
+const RUTH_USER_ID = 'usr-nutritionist';
+
 const router = Router();
 
 const courseSchema = z.object({
@@ -49,14 +51,16 @@ router.get('/:id', (req, res) => {
 router.post(
   '/',
   authenticate,
-  authorize(roles.NUTRITIONIST, roles.ADMIN),
+  authorize(roles.ADMIN),
   validate(courseSchema),
   (req, res) => {
     const course = {
       id: makeId('crs'),
       ...req.validated.body,
-      nutritionistId: req.user.id,
-      status: req.user.role === roles.ADMIN ? 'published' : 'draft',
+      nutritionistId: RUTH_USER_ID,
+      createdByAdminId: req.user.id,
+      updatedByNutritionistId: RUTH_USER_ID,
+      status: 'published',
       lessons: [],
     };
     courses.push(course);
@@ -78,6 +82,7 @@ router.post(
     const lesson = {
       id: makeId('les'),
       ...req.validated.body,
+      updatedByNutritionistId: req.user.role === roles.NUTRITIONIST ? req.user.id : RUTH_USER_ID,
     };
     course.lessons.push(lesson);
     return res.status(201).json({ lesson, course });
@@ -90,8 +95,8 @@ router.patch('/:id', authenticate, authorize(roles.NUTRITIONIST, roles.ADMIN), (
     return res.status(404).json({ message: 'Course not found.' });
   }
   Object.assign(course, req.body);
+  course.updatedByNutritionistId = req.user.role === roles.NUTRITIONIST ? req.user.id : RUTH_USER_ID;
   return res.json({ course });
 });
 
 export default router;
-

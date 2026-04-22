@@ -55,11 +55,11 @@ export default function Footer({ onNavigate }) {
             </span>
             <span className="flex items-center gap-3">
               <Mail size={18} className="text-accent" />
-              care@nutricarepro.health
+            ruthasifiwe@gmail.com
             </span>
             <span className="flex items-center gap-3">
               <Phone size={18} className="text-accent" />
-              +250 788 000 245
+            0787977326
             </span>
           </div>
         </div>
@@ -70,4 +70,3 @@ export default function Footer({ onNavigate }) {
     </footer>
   );
 }
-

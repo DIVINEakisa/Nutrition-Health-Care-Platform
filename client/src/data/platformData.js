@@ -7,6 +7,7 @@ export const imageLibrary = {
   mealPlanning: 'https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&w=1200&q=80',
   clinic: 'https://images.unsplash.com/photo-1505751172876-fa1923c5c528?auto=format&fit=crop&w=1200&q=80',
   kitchen: 'https://images.unsplash.com/photo-1482049016688-2d3e1b311543?auto=format&fit=crop&w=1200&q=80',
+  asifiweRuth: '/images/asifiwe-ruth.png',
 };
 
 export const categories = [
@@ -24,31 +25,16 @@ export const categories = [
 
 export const nutritionists = [
   {
-    id: 'ntr-101',
-    name: 'Dr. Amara Collins',
-    specialty: 'Metabolic health and diabetes nutrition',
+    id: 'asifiwe-ruth',
+    name: 'ASIFIWE Ruth',
+    title: 'Registered Nutrition Doctor',
+    specialty: 'Nutrition education, consultation, and personalized healthcare support',
+    email: 'ruthasifiwe@gmail.com',
+    phone: '0787977326',
     rating: 4.9,
     sessions: 1840,
     nextSlot: 'Today, 14:30',
-    image: 'https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&w=800&q=80',
-  },
-  {
-    id: 'ntr-102',
-    name: 'Grace Mwiza, RD',
-    specialty: 'Maternal, child, and family nutrition',
-    rating: 4.8,
-    sessions: 1260,
-    nextSlot: 'Tomorrow, 09:00',
-    image: 'https://images.unsplash.com/photo-1582750433449-648ed127bb54?auto=format&fit=crop&w=800&q=80',
-  },
-  {
-    id: 'ntr-103',
-    name: 'Samuel Okafor, MSc',
-    specialty: 'Hypertension and cardiovascular nutrition',
-    rating: 4.9,
-    sessions: 1510,
-    nextSlot: 'Wed, 11:30',
-    image: 'https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&w=800&q=80',
+    image: imageLibrary.asifiweRuth,
   },
 ];
 
@@ -60,7 +46,9 @@ export const courses = [
     description:
       'Build blood sugar-friendly meals with practical portioning, label reading, and weekly planning tools.',
     thumbnail: imageLibrary.healthyPlate,
-    instructor: 'Dr. Amara Collins',
+    instructor: 'ASIFIWE Ruth',
+    createdBy: 'Admin',
+    updatedBy: 'ASIFIWE Ruth',
     lessons: 12,
     duration: '4h 20m',
     level: 'Intermediate',
@@ -78,7 +66,9 @@ export const courses = [
     description:
       'Learn how to reduce sodium, increase potassium-rich foods, and cook satisfying meals for heart health.',
     thumbnail: 'https://images.unsplash.com/photo-1467003909585-2f8a72700288?auto=format&fit=crop&w=1200&q=80',
-    instructor: 'Samuel Okafor, MSc',
+    instructor: 'ASIFIWE Ruth',
+    createdBy: 'Admin',
+    updatedBy: 'ASIFIWE Ruth',
     lessons: 9,
     duration: '3h 05m',
     level: 'Beginner',
@@ -96,7 +86,9 @@ export const courses = [
     description:
       'Evidence-based guidance for pregnancy, postpartum recovery, lactation, and nutrient adequacy.',
     thumbnail: imageLibrary.maternal,
-    instructor: 'Grace Mwiza, RD',
+    instructor: 'ASIFIWE Ruth',
+    createdBy: 'Admin',
+    updatedBy: 'ASIFIWE Ruth',
     lessons: 14,
     duration: '5h 10m',
     level: 'All levels',
@@ -112,9 +104,11 @@ export const courses = [
     title: 'Nutrition Support During Cancer Care',
     category: 'Cancer nutrition support',
     description:
-      'Support appetite, strength, digestion, and treatment tolerance with clinician-reviewed nutrition practices.',
+      'Support appetite, strength, digestion, and treatment tolerance with ASIFIWE Ruth-reviewed nutrition practices.',
     thumbnail: imageLibrary.consultation,
-    instructor: 'Dr. Amara Collins',
+    instructor: 'ASIFIWE Ruth',
+    createdBy: 'Admin',
+    updatedBy: 'ASIFIWE Ruth',
     lessons: 11,
     duration: '4h 45m',
     level: 'Clinical',
@@ -132,7 +126,9 @@ export const courses = [
     description:
       'Design affordable weekly menus, prep balanced meals, and reduce decision fatigue at home.',
     thumbnail: imageLibrary.mealPlanning,
-    instructor: 'Grace Mwiza, RD',
+    instructor: 'ASIFIWE Ruth',
+    createdBy: 'Admin',
+    updatedBy: 'ASIFIWE Ruth',
     lessons: 8,
     duration: '2h 50m',
     level: 'Beginner',
@@ -150,7 +146,9 @@ export const courses = [
     description:
       'A respectful, habit-focused program for energy balance, satiety, movement, and long-term adherence.',
     thumbnail: imageLibrary.kitchen,
-    instructor: 'Samuel Okafor, MSc',
+    instructor: 'ASIFIWE Ruth',
+    createdBy: 'Admin',
+    updatedBy: 'ASIFIWE Ruth',
     lessons: 10,
     duration: '3h 40m',
     level: 'All levels',
@@ -167,13 +165,13 @@ export const featuredVideos = [
   {
     id: 'video-1',
     title: 'Understanding Balanced Plates',
-    nutritionist: 'Dr. Amara Collins',
+    nutritionist: 'ASIFIWE Ruth',
     embedUrl: 'https://www.youtube.com/embed/1nAKwH1C4v8',
   },
   {
     id: 'video-2',
     title: 'Meal Prep for Busy Families',
-    nutritionist: 'Grace Mwiza, RD',
+    nutritionist: 'ASIFIWE Ruth',
     embedUrl: 'https://www.youtube.com/embed/0SPwwpruGIA',
   },
 ];
@@ -182,7 +180,7 @@ export const appointments = [
   {
     id: 'APT-2048',
     patient: 'Maya Roberts',
-    nutritionist: 'Dr. Amara Collins',
+    nutritionist: 'ASIFIWE Ruth',
     concern: 'Diabetes meal plan review',
     date: 'May 27, 2026',
     time: '10:30',
@@ -192,7 +190,7 @@ export const appointments = [
   {
     id: 'APT-2051',
     patient: 'Jean Ndayisenga',
-    nutritionist: 'Samuel Okafor, MSc',
+    nutritionist: 'ASIFIWE Ruth',
     concern: 'Blood pressure nutrition consultation',
     date: 'May 28, 2026',
     time: '15:00',
@@ -202,7 +200,7 @@ export const appointments = [
   {
     id: 'APT-2057',
     patient: 'Aline Uwase',
-    nutritionist: 'Grace Mwiza, RD',
+    nutritionist: 'ASIFIWE Ruth',
     concern: 'Pregnancy nutrition support',
     date: 'May 30, 2026',
     time: '09:30',
@@ -238,7 +236,7 @@ export const payments = [
 export const chatMessages = [
   {
     id: 'msg-1',
-    sender: 'Dr. Amara Collins',
+    sender: 'ASIFIWE Ruth',
     role: 'nutritionist',
     message: 'Your glucose notes look consistent. Please keep the evening snack protein-forward this week.',
     time: '09:12',
@@ -278,8 +276,7 @@ export const testimonials = [
 
 export const adminMetrics = [
   { label: 'Active patients', value: '8,420', trend: '+18%' },
-  { label: 'Registered nutritionists', value: '126', trend: '+9%' },
+  { label: 'Active doctor', value: '1', trend: 'ASIFIWE Ruth' },
   { label: 'Course enrollments', value: '14,870', trend: '+24%' },
   { label: 'Monthly payments', value: '$82.4K', trend: '+16%' },
 ];
-

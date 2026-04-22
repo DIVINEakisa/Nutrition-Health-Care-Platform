@@ -91,6 +91,9 @@ export default function CoursesPage({ selectedCourse, onCourseSelect, onBackToCa
                     <span className="text-slate-400">({course.students.toLocaleString()} learners)</span>
                   </div>
                   <h3 className="mt-3 text-xl font-bold text-ink">{course.title}</h3>
+                  <p className="mt-2 text-sm font-semibold text-primary">
+                    Added by {course.createdBy} | Updated by {course.updatedBy}
+                  </p>
                   <p className="mt-3 leading-6 text-slate-600">{course.description}</p>
                   <div className="mt-5 grid grid-cols-3 gap-2 text-sm text-slate-500">
                     <span className="flex items-center gap-1">
@@ -175,6 +178,8 @@ function CourseDetails({ course, onBack, onCourseSelect }) {
                 ['Duration', course.duration],
                 ['Level', course.level],
                 ['Price', `$${course.price}`],
+                ['Added by', course.createdBy],
+                ['Updated by', course.updatedBy],
               ].map(([label, value]) => (
                 <div key={label} className="rounded-lg border border-slate-200 bg-slate-50 p-4">
                   <p className="text-sm text-slate-500">{label}</p>
@@ -285,4 +290,3 @@ function CourseDetails({ course, onBack, onCourseSelect }) {
     </main>
   );
 }
-

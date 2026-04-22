@@ -46,7 +46,7 @@ export default function AppointmentsPage() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <SectionHeader
             eyebrow="Appointments and consultations"
-            title="Book secure nutrition consultations with registered clinicians."
+            title="Book secure nutrition consultations with ASIFIWE Ruth."
             description="Patients can create requests, choose available dates and time slots, pay before consultation, view appointment status, and join online care sessions."
           />
         </div>
@@ -67,7 +67,7 @@ export default function AppointmentsPage() {
 
             <div className="mt-6 grid gap-5">
               <label className="grid gap-2">
-                <span className="text-sm font-bold text-slate-700">Nutritionist</span>
+                <span className="text-sm font-bold text-slate-700">Doctor</span>
                 <select
                   value={selectedNutritionist}
                   onChange={(event) => setSelectedNutritionist(event.target.value)}
@@ -119,7 +119,7 @@ export default function AppointmentsPage() {
               <div className="rounded-lg border border-emerald-100 bg-emerald-50 p-4">
                 <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
                   <div>
-                    <p className="text-sm font-semibold text-primary">Selected clinician</p>
+                    <p className="text-sm font-semibold text-primary">Selected doctor</p>
                     <p className="mt-1 font-bold text-ink">{activeNutritionist.name}</p>
                     <p className="text-sm text-slate-600">{selectedDate} at {selectedTime}</p>
                   </div>
@@ -153,7 +153,7 @@ export default function AppointmentsPage() {
               <div className="mt-5 grid gap-3">
                 {[
                   [Video, 'Join online consultation', 'Enabled after approval and payment confirmation.'],
-                  [MessageSquareText, 'Chat with nutritionist', 'Share questions, meal photos, and progress updates.'],
+                  [MessageSquareText, 'Chat with ASIFIWE Ruth', 'Share questions, meal photos, and progress updates.'],
                   [ShieldCheck, 'Secure visit record', 'Role-based access protects patient care history.'],
                 ].map(([Icon, title, copy]) => (
                   <div key={title} className="flex gap-3 rounded-lg bg-slate-50 p-4">
@@ -211,7 +211,7 @@ export default function AppointmentsPage() {
                 <thead className="bg-slate-50 text-xs uppercase tracking-[0.14em] text-slate-500">
                   <tr>
                     <th className="px-5 py-4">Appointment</th>
-                    <th className="px-5 py-4">Nutritionist</th>
+                    <th className="px-5 py-4">Doctor</th>
                     <th className="px-5 py-4">Date</th>
                     <th className="px-5 py-4">Status</th>
                     <th className="px-5 py-4">Payment</th>
@@ -258,4 +258,3 @@ export default function AppointmentsPage() {
     </main>
   );
 }
-

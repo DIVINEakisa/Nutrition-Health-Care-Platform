@@ -1,6 +1,6 @@
 # Nutrition Healthcare Platform
 
-A modern full-stack nutrition healthcare platform for nutrition education, registered healthcare consultation, appointment booking, secure payments, and online communication.
+A modern full-stack nutrition healthcare platform for nutrition education, consultation with ASIFIWE Ruth, appointment booking, secure payments, and online communication.
 
 ## Tech Stack
 
@@ -25,9 +25,17 @@ docs/                Project documentation
 - Embedded YouTube video lessons
 - Appointment booking with dates, time slots, status tracking, payment history, and invoice action
 - Authentication screens for login, registration, forgot password, and role selection
-- Patient, registered nutritionist, and admin dashboards
-- Nutritionist course builder, lesson builder, YouTube upload flow, schedule management, appointment approvals, payments, and chat
+- Patient, ASIFIWE Ruth, and admin dashboards
+- Admin course creation and course image upload
+- ASIFIWE Ruth video/course update flow, lesson builder, schedule management, appointment approvals, payments, and chat
 - Admin analytics, user management, course moderation, appointment oversight, and payment views
+
+## Dedicated Doctor
+
+- Name: ASIFIWE Ruth
+- Email: ruthasifiwe@gmail.com
+- Phone: 0787977326
+- Profile image: `client/public/images/asifiwe-ruth.png`
 
 ## API Features
 
@@ -88,4 +96,3 @@ CLOUDINARY_API_SECRET=
 ```
 
 The API includes in-memory development data so routes can run before PostgreSQL is connected.
-
