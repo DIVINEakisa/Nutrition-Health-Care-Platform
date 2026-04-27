@@ -391,11 +391,17 @@ export default function HomePage({ onNavigate, onCourseSelect }) {
 
       <section className="bg-slate-950 py-16 text-white sm:py-20">
         <div className="mx-auto grid max-w-7xl gap-8 px-4 sm:px-6 lg:grid-cols-[0.9fr_1.1fr] lg:px-8">
-          <SectionHeader
-            eyebrow="Contact"
-            title="Coordinate clinical nutrition programs, virtual care, and patient education."
-            description="care@nutricarepro.health  |  +250 788 000 245  |  Kigali Telehealth Center"
-          />
+          <div className="max-w-3xl">
+            <p className="mb-3 text-sm font-semibold uppercase tracking-[0.16em] text-emerald-300">
+              Contact
+            </p>
+            <h2 className="text-balance text-3xl font-bold leading-tight text-white sm:text-4xl">
+              Coordinate clinical nutrition programs, virtual care, and patient education.
+            </h2>
+            <p className="mt-4 text-base leading-7 text-slate-300 sm:text-lg">
+              care@nutricarepro.health | +250 788 000 245 | Kigali Telehealth Center
+            </p>
+          </div>
           <form className="grid gap-4 rounded-lg bg-white p-5 text-ink shadow-soft">
             <div className="grid gap-4 sm:grid-cols-2">
               <input
@@ -433,4 +439,3 @@ export default function HomePage({ onNavigate, onCourseSelect }) {
     </main>
   );
 }
-
