@@ -1,0 +1,16 @@
+{
+  "name": "nutrition-healthcare-platform",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Full-stack nutrition education, healthcare consultation, and appointment booking platform.",
+  "scripts": {
+    "dev": "npm run dev --prefix client",
+    "dev:api": "npm run dev --prefix server",
+    "build": "npm run build --prefix client",
+    "start": "npm run start --prefix server"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
+
