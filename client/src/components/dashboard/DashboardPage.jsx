@@ -25,6 +25,7 @@ import {
   nutritionists,
   payments,
 } from '../../data/platformData.js';
+import { formatRwf } from '../../utils/currency.js';
 
 const roleOptions = [
   { id: 'patient', label: 'Patient', icon: Users },
@@ -262,7 +263,7 @@ function NutritionistDashboard({ activeTab, setActiveTab }) {
       <DashboardMetrics
         metrics={[
           ['Pending appointments', '12', '+4 today'],
-          ['Course payments', '$7.8K', '+11%'],
+          ['Course payments', formatRwf(10900000), '+11%'],
           ['Active patients', '248', '+27'],
           ['Unread messages', '18', '5 urgent'],
         ]}
@@ -355,7 +356,7 @@ function PatientDashboard({ activeTab }) {
           ['Active courses', '4', '2 in progress'],
           ['Appointments', '3', '1 pending'],
           ['Care messages', '24', '2 unread'],
-          ['Paid invoices', '$159', 'This month'],
+          ['Paid invoices', formatRwf(223000), 'This month'],
         ]}
       />
       <div className="grid gap-6 xl:grid-cols-[0.85fr_1.15fr]">
@@ -455,7 +456,7 @@ function AdminDashboard({ activeTab }) {
         <Panel title="Analytics and content moderation" icon={BarChart3}>
           <div className="grid gap-4">
             {[
-              ['Monthly revenue', '$82.4K', 'Payments confirmed through Stripe-ready service.'],
+              ['Monthly revenue', 'RWF 115.4M', 'Payments confirmed through Stripe-ready service.'],
               ['Moderation queue', '7 items', 'Admin-created course images and Ruth updates awaiting review.'],
               ['Consultation completion', '94%', 'Approved appointments that reached video session.'],
             ].map(([label, value, copy]) => (
@@ -565,7 +566,7 @@ function PaymentsPanel() {
           <div key={payment.id} className="rounded-lg border border-slate-200 p-4">
             <p className="font-bold text-ink">{payment.service}</p>
             <p className="mt-1 text-sm text-slate-500">{payment.id} - {payment.date}</p>
-            <p className="mt-4 text-2xl font-bold text-ink">${payment.amount}</p>
+            <p className="mt-4 text-2xl font-bold text-ink">{formatRwf(payment.amount)}</p>
             <span className="mt-3 inline-block rounded-full bg-emerald-50 px-3 py-1 text-xs font-bold text-primary">
               {payment.status}
             </span>

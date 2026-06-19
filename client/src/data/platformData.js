@@ -23,6 +23,8 @@ export const categories = [
   'General healthy eating',
 ];
 
+export const consultationFee = 100; // RWF 100 for testing
+
 export const nutritionists = [
   {
     id: 'asifiwe-ruth',
@@ -55,7 +57,7 @@ export const courses = [
     rating: 4.9,
     students: 1240,
     progress: 68,
-    price: 39,
+    price: 55000,
     videoUrl: 'https://www.youtube.com/embed/1nAKwH1C4v8',
     outcomes: ['Plate method confidence', 'Carbohydrate quality checks', 'Seven-day meal plan'],
   },
@@ -75,7 +77,7 @@ export const courses = [
     rating: 4.8,
     students: 910,
     progress: 34,
-    price: 29,
+    price: 41000,
     videoUrl: 'https://www.youtube.com/embed/Q4yUlJV31Rk',
     outcomes: ['Low-sodium cooking swaps', 'Shopping checklist', 'Blood pressure nutrition tracker'],
   },
@@ -95,7 +97,7 @@ export const courses = [
     rating: 4.9,
     students: 760,
     progress: 12,
-    price: 49,
+    price: 69000,
     videoUrl: 'https://www.youtube.com/embed/fqhYBTg73fw',
     outcomes: ['Trimester-specific nutrition', 'Iron and folate routines', 'Postpartum meal support'],
   },
@@ -115,7 +117,7 @@ export const courses = [
     rating: 4.7,
     students: 430,
     progress: 0,
-    price: 59,
+    price: 83000,
     videoUrl: 'https://www.youtube.com/embed/xyQY8a-ng6g',
     outcomes: ['Symptom-aware food choices', 'High-protein mini meals', 'Care team discussion guide'],
   },
@@ -135,7 +137,7 @@ export const courses = [
     rating: 4.8,
     students: 1880,
     progress: 85,
-    price: 25,
+    price: 35000,
     videoUrl: 'https://www.youtube.com/embed/0SPwwpruGIA',
     outcomes: ['Pantry planning', 'Balanced family plates', 'Budget shopping templates'],
   },
@@ -155,7 +157,7 @@ export const courses = [
     rating: 4.7,
     students: 1320,
     progress: 42,
-    price: 35,
+    price: 49000,
     videoUrl: 'https://www.youtube.com/embed/vuIlsN32WaE',
     outcomes: ['Satiety habits', 'Progress dashboards', 'Relapse prevention planning'],
   },
@@ -213,21 +215,21 @@ export const payments = [
   {
     id: 'INV-9082',
     service: 'Initial nutrition consultation',
-    amount: 75,
+    amount: 105000,
     status: 'Confirmed',
     date: 'May 21, 2026',
   },
   {
     id: 'INV-9104',
     service: 'Diabetes Plate Method Masterclass',
-    amount: 39,
+    amount: 55000,
     status: 'Confirmed',
     date: 'May 23, 2026',
   },
   {
     id: 'INV-9120',
     service: 'Follow-up video consultation',
-    amount: 45,
+    amount: 63000,
     status: 'Processing',
     date: 'May 25, 2026',
   },
@@ -278,5 +280,5 @@ export const adminMetrics = [
   { label: 'Active patients', value: '8,420', trend: '+18%' },
   { label: 'Active doctor', value: '1', trend: 'ASIFIWE Ruth' },
   { label: 'Course enrollments', value: '14,870', trend: '+24%' },
-  { label: 'Monthly payments', value: '$82.4K', trend: '+16%' },
+  { label: 'Monthly payments', value: 'RWF 115.4M', trend: '+16%' },
 ];

@@ -2,6 +2,7 @@ import { ArrowLeft, ArrowRight, BookOpen, Clock, FileText, PlayCircle, Search, S
 import { useMemo, useState } from 'react';
 import SectionHeader from '../ui/SectionHeader.jsx';
 import { categories, courses } from '../../data/platformData.js';
+import { formatRwf } from '../../utils/currency.js';
 
 export default function CoursesPage({ selectedCourse, onCourseSelect, onBackToCatalog }) {
   const [query, setQuery] = useState('');
@@ -177,7 +178,7 @@ function CourseDetails({ course, onBack, onCourseSelect }) {
                 ['Lessons', course.lessons],
                 ['Duration', course.duration],
                 ['Level', course.level],
-                ['Price', `$${course.price}`],
+                ['Price', formatRwf(course.price)],
                 ['Added by', course.createdBy],
                 ['Updated by', course.updatedBy],
               ].map(([label, value]) => (

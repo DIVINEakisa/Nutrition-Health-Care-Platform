@@ -93,6 +93,21 @@ export const messages = [
   },
 ];
 
+// ASIFIWE Ruth's payment account - All payments go here
+export const doctorPaymentAccounts = {
+  'usr-nutritionist': {
+    id: 'acc-asifiwe',
+    nutritionistId: 'usr-nutritionist',
+    name: 'ASIFIWE Ruth',
+    accountType: 'mtn',
+    phoneNumber: '0787977326',
+    phoneNumberFormatted: '+250787977326',
+    verified: true,
+    verifiedAt: new Date().toISOString(),
+    createdAt: new Date().toISOString(),
+  },
+};
+
 export function makeId(prefix) {
   return `${prefix}-${crypto.randomUUID()}`;
 }

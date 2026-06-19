@@ -3,6 +3,8 @@ CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
 CREATE TYPE user_role AS ENUM ('admin', 'nutritionist', 'patient');
 CREATE TYPE appointment_status AS ENUM ('pending', 'approved', 'rejected', 'completed', 'cancelled');
 CREATE TYPE payment_status AS ENUM ('awaiting_payment', 'processing', 'confirmed', 'failed', 'refunded');
+CREATE TYPE payment_method_type AS ENUM ('mtn', 'airtel', 'bank', 'stripe');
+CREATE TYPE payment_account_type AS ENUM ('mtn', 'airtel', 'bank');
 
 CREATE TABLE users (
   id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
@@ -24,6 +26,20 @@ CREATE TABLE nutritionist_profiles (
   bio TEXT,
   rating NUMERIC(2, 1) DEFAULT 0,
   verified_at TIMESTAMPTZ
+);
+
+CREATE TABLE nutritionist_payment_accounts (
+  id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+  nutritionist_id UUID NOT NULL UNIQUE REFERENCES users(id) ON DELETE CASCADE,
+  account_type payment_account_type NOT NULL,
+  phone_number TEXT,
+  account_number TEXT,
+  account_holder_name TEXT,
+  bank_name TEXT,
+  verified BOOLEAN DEFAULT FALSE,
+  verified_at TIMESTAMPTZ,
+  created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+  updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
 );
 
 CREATE TABLE courses (
@@ -76,12 +92,20 @@ CREATE TABLE payments (
   user_id UUID NOT NULL REFERENCES users(id),
   appointment_id UUID REFERENCES appointments(id),
   course_id UUID REFERENCES courses(id),
+  payment_method payment_method_type NOT NULL,
   stripe_payment_intent_id TEXT,
+  mobile_money_request_id TEXT,
+  phone_number TEXT,
+  confirmation_code TEXT,
   amount_cents INTEGER NOT NULL,
-  currency TEXT NOT NULL DEFAULT 'usd',
-  status payment_status NOT NULL DEFAULT 'processing',
+  currency TEXT NOT NULL DEFAULT 'RWF',
+  status payment_status NOT NULL DEFAULT 'awaiting_payment',
   invoice_number TEXT UNIQUE,
-  created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+  bank_reference TEXT,
+  nutritionist_id UUID REFERENCES users(id),
+  processed_at TIMESTAMPTZ,
+  created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+  updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
 );
 
 CREATE TABLE messages (
